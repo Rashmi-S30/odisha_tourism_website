@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Tour Odisha</title>
+
+  <!-- Google Fonts & Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; background: #f9f9f9; }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,0.7);
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    nav .logo { color: whitesmoke; font-size: 24px; font-weight: 700; }
+    nav ul { display: flex; list-style: none; }
+    nav ul li { margin-left: 30px; }
+    nav ul li a { color: whitesmoke; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+    nav ul li a:hover { color: #00c853; }
+    .search-box { display: flex; align-items: center; background: white; border-radius: 20px; padding: 5px 10px; }
+    .search-box input { border: none; outline: none; padding: 5px; }
+    .search-box i { margin-left: 5px; cursor: pointer; }
+    .logo{
+      height: 70px;
+      width: auto;
+      border-radius: 50px;
+    }
+
+    .hero {
+      height: 100vh;
+      background: url("https://iili.io/KYLopTB.png") no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+    .hero h1 { font-size: 3.5rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+    .hero p{
+      color:whitesmoke;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #00c853;
+      color: white;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .btn:hover { background: green; }
+
+    section { padding: 80px 50px; text-align: center; }
+    section h2 { font-size: 2.5rem; margin-bottom: 20px; color: #333; }
+    section p { color: whitesmoke; max-width: 700px; margin: 0 auto 40px; }
+    #about{
+      background-image: url("https://iili.io/KYQseEu.png");
+      color:whitesmoke;
+    }
+   
+ 
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-10px); }
+    .card img { width: 100%; height: 200px; object-fit: cover; }
+    .card h3 { margin: 15px; color: #333; }
+    .card p { margin: 0 15px 20px; color: #666; font-size: 0.9rem; }
+
+    .slider {
+      position: relative;
+      max-width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .slides {
+      display: flex;
+      width: 300%;
+      animation: slide 12s infinite;
+    }
+    .slides img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    @keyframes slide {
+      0% { transform: translateX(0%); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0%); }
+    }
+
+    footer {
+      background: #222;
+      color: #aaa;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    footer img .fool{
+      height: 50px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      animation: pop 0.3s ease-in-out;
+    }
+    @keyframes pop {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #555;
+    }
+
+    .booking-form { text-align: left; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 6px; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border: 1px solid #00c853;
+      outline: none;
+    }
+    .booking-form .btn {
+       width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      background: #00c853;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .booking-form .btn:hover { background: #009624; }
+
+    #savedBookings { padding: 40px; background: #f4f4f4; }
+    .booking-item {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    .delete-btn {
+      margin-top: 5px;
+      padding: 5px 10px;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .delete-btn:hover { background: darkred; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <img src="https://iili.io/KYLxhyQ.png" alt="Odisha Tourism" class="logo">
+  <!-- <div class="logo">ODISHA TOURISM</div> -->
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search destinations...">
+    <i class="fa-solid fa-magnifying-glass" id="searchBtn"></i>
+  </div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" id="openBookTrip">BookTrip</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div>
+    <h1 class="animate-title">EXPLORE ODISHA WHERE CULTURE MEETS NATURE</h1>
+    <p class="animate-subtitle">Explore pristine beaches, lush forests, towering mountains, and tranquil lakes. With diverse landscapes, every turn promises a new adventure for nature lovers.</p>
+    <a href="#destinations" class="btn">Explore Now</a>
+  </div>
+</section>
+
+<style>
+  .hero h1 {
+    font-size: 3.5rem;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    text-align: center;
+    animation: floatTitle 4s ease-in-out infinite;
+  }
+
+  .hero p {
+    color: whitesmoke;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 15px;
+    animation: floatSubtitle 8s ease-in-out infinite;
+  }
+
+  @keyframes floatTitle {
+    0% { opacity: 0; transform: translateY(50px) scale(0.95); }
+    25% { opacity: 1; transform: translateY(0) scale(1); }
+    50% { opacity: 0.8; transform: translateY(-10px) scale(1.02); }
+    75% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(50px) scale(0.95); }
+  }
+
+  @keyframes floatSubtitle {
+    0% { opacity: 0; transform: translateY(20px); }
+    25% { opacity: 0.6; transform: translateY(0); }
+    50% { opacity: 0.8; transform: translateY(-5px); }
+    75% { opacity: 0.6; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(20px); }
+  }
+</style>
+
+
+
+<!-- <section class="hero" id="home">
+  <div>
+    <h1>EXPLORE ODISHA WHERE CULTURE MEETS NATURE</h1>
+    <p>Explore pristine beaches, lush forests, towering mountains, and tranquil lakes. With diverse landscapes, every turn promises a new adventure for nature lovers.</p>
+    <a href="#destinations" class="btn">Explore Now</a>
+  </div>
+</section> -->
+
+<!-- About -->
+<section id="about">
+  <h2>Welcome to Odisha tourism</h2>
+  
+</section>
+
+<!-- Destinations -->
+<section id="destinations" style="background:#f4f4f4;">
+  <h2>Top Destinations</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="https://iili.io/KYLxCTN.jpg" alt="Simlipal National Park">
+      <h3>Simlipal National Park</h3>
+      <p>Home to tigers, elephants, and lush forests.</p>
+    </div>
+    <div class="card">
+      <img src="https://iili.io/KYQ7hxf.jpg" alt="Satkosia Gorge">
+      <h3>Satkosia Gorge</h3>
+      <p>A stunning river gorge with crocodile habitats.</p>
+    </div>
+    <div class="card">
+      <img src="https://iili.io/KYLbixV.jpg" alt="Debrigarh Sanctuary">
+      <h3>Debrigarh Sanctuary</h3>
+      <p>Rich biodiversity by the Hirakud Reservoir.</p>
+    </div>
+    <div class="card">
+      <img src="https://iili.io/KYQ2dyF.jpg" alt="Jagannath Temple">
+      <h3>Jagannath Temple</h3>
+      <p>The famous temple in Puri with grand Rath Yatra festival.</p>
+    </div>
+    <div class="card">
+      <img src="https://iili.io/KYLojLX.webp" alt="Sun Temple">
+      <h3>Sun Temple</h3>
+      <p>13th-century architectural marvel built as a colossal chariot for the Sun God, Surya.</p>
+      </div>
+       <div class="card">
+      <img src="https://iili.io/KYLxG6u.png" alt="Chilika lake">
+      <h3>Chilika lake</h3>
+      <p>A large, pear-shaped, brackish water lagoon on India's eastern coast in Odisha.</p>
+       </div>
+        <div class="card">
+      <img src="https://iili.io/KYQIT9j.jpg" alt="Nandankanan">
+      <h3>Nandankanan</h3>
+      <p>A unique combination zoological park and botanical garden.</p>
+        </div>
+        <div class="card">
+      <img src="https://iili.io/KYQTSrF.jpg" alt="Hirakud Dam">
+      <h3>Hirakud Dam</h3>
+      <p>A multipurpose river project in Odisha, India, built on the Mahanadi River and inaugurated in 1957..</p>
+        </div>
+        <div class="card">
+      <img src="https://iili.io/KYQA7ol.jpg" alt="Lingraj Temple">
+      <h3>Lingraj Temple</h3>
+      <p>A historic and architecturally significant Hindu temple dedicated to Lord Shiva.</p>
+        </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="slider">
+    <div class="slides">
+      <img src="https://iili.io/KYQ59pa.jpg" alt="Tiger">
+      <img src="https://iili.io/KYLxNwB.jpg" alt="Elephant">
+      <img src="https://iili.io/KYLxlZ7.jpg" alt="Deer">
+      <img src="https://iili.io/KYLxA3G.jpg" alt="wolf">
+      <img src="https://iili.io/KYQ0c8B.jpg" alt="Forest">
+      <img src="https://iili.io/KYLol1a.jpg" alt="Dam">
+      <img src="https://iili.io/KYLxzCX.jpg" alt="Konark">
+      <img src="https://iili.io/KYQGjFj.jpg" alt="Lingraj">
+      <img src="https://iili.io/KYLxcjS.jpg" alt="chillika">
+      <img src="https://iili.io/KYLxKYv.webp" alt="Simili">
+      <img src="https://iili.io/KYLotYx.jpg" alt="Leopart">
+      <img src="https://iili.io/KYLoZ2j.jpg" alt="Peacock">
+      <img src="https://iili.io/KYLoXII.webp" alt="Girrap">
+      <img src="https://iili.io/KYLohXt.webp" alt="Imami">
+      <img src="https://iili.io/KYLopTB.png" alt="Debri">
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT STYLES -->
+<style>
+  #contact {
+    background-color: #e6f2e6;
+    padding: 50px 20px;
+    text-align: center;
+  }
+
+  .contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  #contact h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  #contact p {
+    color: #555;
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .btn {
+    background-color: #2e8b57;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px auto;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #256d48;
+  }
+
+  .contact-btn {
+    text-align: center;
+    display: block;
+    margin: 0 auto 20px;
+  }
+
+  .or-divider {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #777;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+
+  .thank-you-message {
+    display: none;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+  }
+</style>
+
+<!-- CONTACT SCRIPT -->
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Show Thank You Message
+    document.getElementById('thankYouMessage').style.display = 'block';
+
+    // Clear form fields
+    this.reset();
+
+    // Optionally hide the message after 5 seconds
+    setTimeout(() => {
+      document.getElementById('thankYouMessage').style.display = 'none';
+    }, 5000);
+  });
+</script>
+
+
+<!-- footer.html -->
+<footer style="background: #0a3d62; color: #fff; padding: 30px 0; font-family: Arial, sans-serif;">
+  <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+
+    <!-- Left Side: Image -->
+    <div style="flex: 1; min-width: 250px; text-align: center; margin-bottom: 20px;">
+      <img src="https://iili.io/KYLxwuV.webp" alt="Odisha Tourism Logo" style="max-width: 200px; border-radius: 10px;">
+      <p style="margin-top: 10px; font-style: italic;">Explore the Beauty of Odisha</p>
+    </div>
+
+    <!-- Right Side: Details -->
+    <div style="flex: 2; min-width: 300px; display: flex; flex-wrap: wrap; justify-content: space-around;">
+
+      <!-- About Section -->
+      <div style="flex: 1; min-width: 200px; margin: 10px;">
+        <h3 style="color: #f8c291;">Odisha Tourism</h3>
+        <p>Discover the beauty of Odisha – its culture, heritage, temples, beaches, and wildlife. 
+        Explore with us and make your journey memorable.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div style="flex: 1; min-width: 200px; margin: 10px;">
+        <h3 style="color: #f8c291;">Quick Links</h3>
+        <ul style="list-style: none; padding: 0; line-height: 1.8;">
+          <li><a href="index.html" style="color: #fff; text-decoration: none;">Home</a></li>
+          <li><a href="destinations.html" style="color: #fff; text-decoration: none;">Destinations</a></li>
+          <li><a href="booktrip.html" style="color: #fff; text-decoration: none;">Book Trip</a></li>
+          <li><a href="contact.html" style="color: #fff; text-decoration: none;">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div style="flex: 1; min-width: 200px; margin: 10px;">
+        <h3 style="color: #f8c291;">Contact Us</h3>
+        <p>Email: support@odishatourism.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Bhubaneswar, Odisha</p>
+      </div>
+
+      <!-- Social Media -->
+      <div style="flex: 1; min-width: 200px; margin: 10px;">
+        <h3 style="color: #f8c291;">Follow Us</h3>
+        <a href="#" style="margin: 0 10px; color: #fff;"><i class="fab fa-facebook"></i> Facebook</a><br>
+        <a href="#" style="margin: 0 10px; color: #fff;"><i class="fab fa-instagram"></i> Instagram</a><br>
+        <a href="#" style="margin: 0 10px; color: #fff;"><i class="fab fa-twitter"></i> Twitter</a>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid #fff; margin: 20px 0;">
+  <p style="text-align: center; margin: 0;">&copy; 2025 Odisha Tourism | All Rights Reserved</p>
+</footer>
+
+<script>
+  // BookTrip Modal logic ... (unchanged, already in your code)
+
+
+// Search functionality
+  document.getElementById("searchBtn").addEventListener("click", () => {
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    if (!query) return;
+
+    let found = false;
+
+    document.querySelectorAll(".card").forEach(card => {
+      const title = card.querySelector("h3").innerText.toLowerCase();
+
+      if (title.includes(query)) {
+        found = true;
+
+        // Scroll into view
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        // Highlight the matched card
+        card.style.border = "3px solid #00c853";
+        card.style.boxShadow = "0 0 15px rgba(0,200,83,0.8)";
+        setTimeout(() => {
+          card.style.border = "";
+          card.style.boxShadow = "";
+        }, 2000);
+      }
+    });
+
+    if (!found) {
+      alert("No matching destination found.");
+    }
+  });
+
+  document.getElementById("searchInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      document.getElementById("searchBtn").click();
+    }
+  });
+  
+</script>
+
+<!-- Destination Info Modal -->
+<div id="destinationModal" class="modal">
+  <div class="modal-content">
+    <span id="closeDestinationModal" class="close">&times;</span>
+    <h2 id="destinationTitle"></h2>
+    <p id="destinationInfo"></p>
+    <img id="destinationImage" src="" alt="" style="width:100%;border-radius:12px;margin-top:15px;">
+  </div>
+</div>
+
+
+
+
+
+<script>
+  // Destination Data
+    const destinationsData = {
+      "Simlipal National Park": { info: "Home to tigers, elephants, and lush forests.", images: ["/similipal.jpg","/similipal.jpg","/similipal.jpg"], activities: "Safari tours, Bird watching", bestTime: "Oct-Jun" , },
+  "Satkosia Gorge": { info: "A stunning river gorge and crocodile habitat.", images:["/satokosia.jpg","/satokosia.jpg"], activities:"Boating, Photography", bestTime:"Nov-Feb" },
+  "Debrigarh Sanctuary": { info: "Biodiversity by Hirakud Reservoir.", images:["/debri.jpg"], activities:"Bird watching, Trekking", bestTime:"Oct-Mar" },
+  "Jagannath Temple": { info: "Sacred temple in Puri, famous Rath Yatra.", images:["/jagannath2.jpg"], activities:"Temple visit", bestTime:"Jun-Feb" },
+  "Sun Temple": { info: "UNESCO heritage site at Konark.", images:["/konark.webp"], activities:"Photography", bestTime:"Oct-Mar" },
+  "Chilika lake": { info: "Asia's largest brackish lagoon.", images:["/chillika.png"], activities:"Boating, Bird watching", bestTime:"Nov-Feb" },
+  "Nandankanan": { info: "Zoo with white tigers and botanical garden.", images:["/nandan.avif"], activities:"Zoo visit", bestTime:"Oct-Mar" },
+  "Hirakud Dam": { info: "World's longest dam, scenic views.", images:["/hirakud.jpg"], activities:"Sightseeing", bestTime:"Oct-Feb" },
+  "Lingraj Temple": { info: "Ancient Shiva temple, Kalinga architecture.", images:["/lingaraj.jpg"], activities:"Temple visit", bestTime:"Oct-Mar" }
+ 
+    };
+
+    const destinationModal = document.getElementById("destinationModal");
+    const closeDestinationModal = document.getElementById("closeDestinationModal");
+    const destinationTitle = document.getElementById("destinationTitle");
+    const destinationInfo = document.getElementById("destinationInfo");
+    const destinationImage = document.getElementById("destinationImage");
+    // const bookTripModal = document.getElementById("bookTripModal");
+    const closeBookTripModal = document.getElementById("closeBookTripModal");
+
+    function openDestinationModal(title) {
+      const data = destinationsData[title];
+      if (!data) return;
+      destinationTitle.innerText = title;
+      destinationInfo.innerHTML = `<strong>Description:</strong> ${data.info}<br>
+      <strong>Activities:</strong> ${data.activities}<br>
+      <strong>Best Time:</strong> ${data.bestTime}<br>
+      <button id="bookNowBtn" class="btn" style="margin-top:10px;">Book Now</button>`;
+      destinationImage.innerHTML = data.images.map(img=>`<img src="${img}">`).join("");
+      destinationModal.style.display = "flex";
+      document.getElementById("bookNowBtn").addEventListener("click", ()=>{
+        destinationModal.style.display="none";
+        bookTripModal.style.display="flex";
+        document.getElementById("destination").value=title;
+      });
+    }
+
+    document.querySelectorAll(".card").forEach(card=>{
+      card.addEventListener("click",()=>openDestinationModal(card.querySelector("h3").innerText));
+    });
+
+    document.getElementById("searchBtn").addEventListener("click",()=>{
+      const q=document.getElementById("searchInput").value.trim().toLowerCase();
+      if(!q) return;
+      let found=false;
+      document.querySelectorAll(".card").forEach(card=>{
+        const t=card.querySelector("h3").innerText.toLowerCase();
+        if(!found && t.includes(q)){ found=true;
+          card.scrollIntoView({behavior:"smooth",block:"center"});
+          card.style.border="3px solid #00c853";
+          setTimeout(()=>card.style.border="",2000);
+          openDestinationModal(card.querySelector("h3").innerText);
+        }
+      });
+      if(!found) alert("No matching destination found.");
+    });
+
+    document.getElementById("searchInput").addEventListener("keypress",e=>{
+      if(e.key==="Enter"){ e.preventDefault(); document.getElementById("searchBtn").click(); }
+    });
+
+    closeDestinationModal.onclick=()=>destinationModal.style.display="none";
+    closeBookTripModal.onclick=()=>bookTripModal.style.display="none";
+    window.onclick=e=>{
+      if(e.target===destinationModal) destinationModal.style.display="none";
+      if(e.target===bookTripModal) bookTripModal.style.display="none";
+    };
+
+
+  // Clear previous images
+  destinationImage.innerHTML = "";
+  data.images.forEach(img => {
+    const imageEl = document.createElement("img");
+    imageEl.src = img;
+    imageEl.style.width = "100%";
+    imageEl.style.borderRadius = "12px";
+    imageEl.style.marginTop = "10px";
+    destinationImage.appendChild(imageEl);
+  });
+
+  destinationModal.style.display = "flex";
+
+  // Book Now button click
+  document.getElementById("bookNowBtn").addEventListener("click", () => {
+    destinationModal.style.display = "none";
+    bookTripModal.style.display = "flex";
+    document.getElementById("destination").value = title;
+  });
+
+
+//search logic
+document.getElementById("searchBtn").addEventListener("click", () => {
+  const query = document.getElementById("searchInput").value.trim().toLowerCase();
+  if (!query) return;
+
+  let found = false;
+
+  document.querySelectorAll(".card").forEach(card => {
+    const title = card.querySelector("h3").innerText.toLowerCase();
+    if (!found && title.includes(query)) {  // only open first match
+      found = true;
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Highlight card
+      card.style.border = "3px solid #00c853";
+      card.style.boxShadow = "0 0 15px rgba(0,200,83,0.8)";
+      setTimeout(() => { card.style.border = ""; card.style.boxShadow = ""; }, 2000);
+
+      // Open modal
+      openDestinationModal(card.querySelector("h3").innerText);
+    }
+  });
+
+  if (!found) alert("No matching destination found.");
+});
+
+document.getElementById("searchInput").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    document.getElementById("searchBtn").click();
+  }
+});
+
+//modal logic
+document.getElementById("searchBtn").addEventListener("click", () => {
+  const query = document.getElementById("searchInput").value.trim().toLowerCase();
+  if (!query) return;
+
+  let found = false;
+
+  document.querySelectorAll(".card").forEach(card => {
+    const title = card.querySelector("h3").innerText.toLowerCase();
+    if (title.includes(query)) {
+      found = true;
+
+      // Scroll into view
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Highlight the matched card
+      card.style.border = "3px solid #00c853";
+      card.style.boxShadow = "0 0 15px rgba(0,200,83,0.8)";
+      setTimeout(() => {
+        card.style.border = "";
+        card.style.boxShadow = "";
+      }, 2000);
+
+      // Open modal automatically
+      openDestinationModal(card.querySelector("h3").innerText);
+    }
+  });
+
+  if (!found) {
+    alert("No matching destination found.");
+  }
+});
+
+document.getElementById("searchInput").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    document.getElementById("searchBtn").click();
+  }
+});
+
+
+
+
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => {
+    const title = card.querySelector("h3").innerText;
+    const data = destinationsData[title];
+
+    destinationTitle.innerText = title;
+    destinationInfo.innerHTML = `
+      <strong>Description:</strong> ${data.info} <br>
+      <strong>Activities:</strong> ${data.activities} <br>
+      <strong>Best Time to Visit:</strong> ${data.bestTime} <br>
+      <button id="bookNowBtn" class="btn" style="margin-top:10px;">Book Now</button>
+    `;
+    // destinationImage.src = data.image;
+    // Clear previous images
+destinationImage.innerHTML = "";
+
+// If multiple images, display all
+if(data.images && data.images.length > 0){
+  destinationImage.innerHTML = data.images.map(img => `<img src="${img}" style="width:100%; border-radius:12px; margin-top:10px;">`).join('');
+} else {
+  // Fallback to single image
+  destinationImage.innerHTML = `<img src="${data.image}" style="width:100%; border-radius:12px; margin-top:15px;">`;
+}
+
+    destinationModal.style.display = "flex";
+
+    // Book Now button click opens BookTrip modal with pre-selected destination
+    document.getElementById("bookNowBtn").addEventListener("click", () => {
+      destinationModal.style.display = "none";
+      modal.style.display = "flex";
+      document.getElementById("destination").value = title;
+    });
+  });
+});
+
+closeDestinationModal.addEventListener("click", () => destinationModal.style.display = "none");
+window.addEventListener("click", (e) => { if (e.target === destinationModal) destinationModal.style.display = "none"; });
+</script> 
+
+
+<script>
+
+  // BookTrip Modal logic ... (unchanged, already in your code)
+
+
+
+ document.getElementById("searchBtn").addEventListener("click", () => {
+  const query = document.getElementById("searchInput").value.trim().toLowerCase();
+  if (!query) return;
+
+  let found = false;
+
+  document.querySelectorAll(".card").forEach(card => {
+    const title = card.querySelector("h3").innerText.toLowerCase();
+    if (title.includes(query)) {
+      found = true;
+
+      // Scroll into view
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Highlight the matched card
+      card.style.border = "3px solid #00c853";
+      card.style.boxShadow = "0 0 15px rgba(0,200,83,0.8)";
+      setTimeout(() => {
+        card.style.border = "";
+        card.style.boxShadow = "";
+      }, 2000);
+
+      // Open modal automatically
+      openDestinationModal(card.querySelector("h3").innerText);
+    }
+  });
+
+  if (!found) {
+    alert("No matching destination found.");
+  }
+});
+
+document.getElementById("searchInput").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    document.getElementById("searchBtn").click();
+  }
+});
+
+
+    // Book Now button logic
+    document.getElementById("bookNowBtn").addEventListener("click", () => {
+        destinationModal.style.display = "none";
+        bookTripModal.style.display = "flex";
+        document.getElementById("destination").value = title;
+    });
+
+    // Scroll into view
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    // Highlight the card
+    card.style.border = "3px solid #00c853";
+    card.style.boxShadow = "0 0 15px rgba(0,200,83,0.8)";
+    setTimeout(() => {
+      card.style.border = "";
+      card.style.boxShadow = "";
+    }, 2000);
+
+
+
+
+    if (!found) {
+
+      alert("No matching destination found.");
+
+    }
+
+
+
+
+
+  document.getElementById("searchInput").addEventListener("keypress", function(e) {
+
+    if (e.key === "Enter") {
+
+      e.preventDefault();
+
+      document.getElementById("searchBtn").click();
+
+    }
+
+  });
+
+  
+
+</script>
+
+<!-- BookTrip Modal -->
+
+<div class="modal" id="bookTripModal">
+
+  <div class="modal-content">
+
+    <span class="close" id="closeModal">&times;</span>
+
+    <h2>Book Your Trip</h2>
+
+    <form class="booking-form" id="bookingForm">
+
+      <div class="form-group">
+
+        <label for="name">Full Name</label>
+
+        <input type="text" id="name" required>
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="email">Email Address</label>
+
+        <input type="email" id="email" required>
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="destination">Destination</label>
+
+        <select id="destination" required>
+
+          <option value="" disabled selected>Select destination</option>
+
+          <option>Simlipal National Park</option>
+
+          <option>Satkosia Gorge</option>
+
+          <option>Debrigarh Sanctuary</option>
+
+          <option>Jagannath Temple</option>
+
+          <option>Sun Temple</option>
+
+          <option>Chilika Lake</option>
+
+          <option>Nandankanan</option>
+
+          <option>Hirakud Dam</option>
+
+          <option>Lingraj Temple</option>
+
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="date">Travel Date</label>
+
+        <input type="date" id="date" required>
+
+      </div>
+
+      <button type="submit" class="btn">Book Now</button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+
+
+
+<!-- Saved Bookings Section -->
+
+<section id="savedBookings">
+
+  <h2>Your Bookings</h2>
+
+  <div id="bookingList">
+
+    <p>No bookings yet.</p>
+
+  </div>
+
+</section>
+
+
+
+<script>
+
+  // Modal open/close
+
+  const openBookTripBtn = document.getElementById("openBookTrip");
+
+  const bookTripModal = document.getElementById("bookTripModal");
+
+  const closeModalBtn = document.getElementById("closeModal");
+
+
+
+  openBookTripBtn.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    bookTripModal.style.display = "flex";
+
+  });
+
+
+
+  closeModalBtn.addEventListener("click", () => {
+
+    bookTripModal.style.display = "none";
+
+  });
+
+
+
+  window.addEventListener("click", (e) => {
+
+    if (e.target === bookTripModal) {
+
+      bookTripModal.style.display = "none";
+
+    }
+
+  });
+
+
+
+  // Booking form submission
+
+  const bookingForm = document.getElementById("bookingForm");
+
+  const bookingList = document.getElementById("bookingList");
+
+
+
+  function getBookings() {
+
+    return JSON.parse(localStorage.getItem("bookings")) || [];
+
+  }
+
+
+
+  function saveBooking(booking) {
+
+    const bookings = getBookings();
+
+    bookings.push(booking);
+
+    localStorage.setItem("bookings", JSON.stringify(bookings));
+
+  }
+
+
+
+  function deleteBooking(index) {
+
+    const bookings = getBookings();
+
+    bookings.splice(index, 1);
+
+    localStorage.setItem("bookings", JSON.stringify(bookings));
+
+    renderBookings();
+
+  }
+
+
+
+  function renderBookings() {
+
+    const bookings = getBookings();
+
+    if (bookings.length === 0) {
+
+      bookingList.innerHTML = "<p>No bookings yet.</p>";
+
+      return;
+
+    }
+
+    bookingList.innerHTML = "";
+
+    bookings.forEach((b, i) => {
+
+      const div = document.createElement("div");
+
+      div.className = "booking-item";
+
+      div.innerHTML = `
+
+        <strong>${b.name}</strong> - ${b.destination} - ${b.date}<br>
+
+        Email: ${b.email}
+
+        <br>
+
+        <button class="delete-btn" data-index="${i}">Delete</button>
+
+      `;
+
+      bookingList.appendChild(div);
+
+    });
+
+
+
+    // Add delete event listeners
+
+    document.querySelectorAll(".delete-btn").forEach(btn => {
+
+      btn.addEventListener("click", () => {
+
+        deleteBooking(parseInt(btn.getAttribute("data-index")));
+
+      });
+
+    });
+
+  }
+
+
+
+  bookingForm.addEventListener("submit", (e) => {
+
+    e.preventDefault();
+
+
+
+    const name = document.getElementById("name").value.trim();
+
+    const email = document.getElementById("email").value.trim();
+
+    const destination = document.getElementById("destination").value;
+
+    const date = document.getElementById("date").value;
+
+
+
+    if (!name || !email || !destination || !date) {
+
+      alert("Please fill in all fields.");
+
+      return;
+
+    }
+
+
+
+    const booking = { name, email, destination, date };
+
+    saveBooking(booking);
+
+
+
+    alert("Your trip has been booked successfully!");
+
+    bookingForm.reset();
+
+    bookTripModal.style.display = "none";
+
+    renderBookings();
+
+  });
+
+
+
+  // Render bookings on page load
+
+  renderBookings();
+
+</script>
+
+</body>
+</html>
